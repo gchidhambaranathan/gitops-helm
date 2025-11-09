@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: gitops-explore
-  tag: "latest"
+  tag: "v1.0.0"
   pullPolicy: IfNotPresent
 service:
   type: NodePort

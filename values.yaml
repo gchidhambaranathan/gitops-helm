@@ -6,6 +6,6 @@ image:
 service:
   type: NodePort
   port: 80
-  nodePort: 30080
+  #nodePort: 30080
 namespace: gitops-explore
 podPort: 8080

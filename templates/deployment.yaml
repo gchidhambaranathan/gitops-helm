@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gitops-explore.fullname" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "gitops-explore.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "gitops-explore.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "gitops-explore.name" . }}
+    spec:
+      containers:
+        - name: {{ include "gitops-explore.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: PORT
+              value: "{{ .Values.podPort }}"
+          ports:
+            - containerPort: {{ .Values.podPort }}

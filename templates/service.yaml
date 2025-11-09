@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gitops-explore.fullname" . }}
+  namespace: {{ .Values.namespace }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: {{ include "gitops-explore.name" . }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.podPort }}
+      nodePort: {{ .Values.service.nodePort }}
+      protocol: TCP
